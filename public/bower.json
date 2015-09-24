@@ -1,0 +1,22 @@
+{
+  "name": "visceral-tambourine",
+  "version": "0.0.1",
+  "authors": [
+    "Aaron Norby",
+    "Phong Pham",
+    "Robert Forloine",
+    "Alex Hutchison"
+  ],
+  "description": "Collaborative Music Playing",
+  "main": "app.js",
+  "license": "MIT",
+  "homepage": "http://visceraltambourine.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ]
+}
