@@ -5,24 +5,38 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs', 'chai'],
+   // frameworks: ['mocha', 'chai', 'requirejs'],
+
+    frameworks: ['mocha'],
+
 
 
     // list of files / patterns to load in the browser
     files: [
+      // angular source
+      'public/bower_components/angular/angular.js',
+      'public/bower_components/angular-mocks/angular-mocks.js',
+
+      // app code
       'public/js/**/*.js',
+
+      // our spec files   
+      'node_modules/chai/chai.js',
       'tests/**/*Spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      'karma.conf.js'
     ],
+
+    //plugins: ['karma-mocha', 'karma-requirejs', 'karma-chai'],
 
 
     // preprocess matching files before serving them to the browser
@@ -56,7 +70,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome', 'PhantomJS'],
 
 
     // Continuous Integration mode
