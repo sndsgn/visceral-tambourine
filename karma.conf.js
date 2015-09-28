@@ -26,7 +26,6 @@ module.exports = function(config) {
       'public/js/**/*.js',
 
       // our spec files   
-      'node_modules/chai/chai.js',
       'tests/**/*Spec.js'
     ],
 

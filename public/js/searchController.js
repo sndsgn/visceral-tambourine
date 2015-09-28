@@ -3,7 +3,7 @@ app.controller('searchController', ['$scope', 'searchFactory', function($scope, 
   
   
   $scope.search = function () {
-    searchFactory.getSearchResults($scope.test);
+    $scope.searchResults = searchFactory.getSearchResults($scope.test);
   };
 
 
