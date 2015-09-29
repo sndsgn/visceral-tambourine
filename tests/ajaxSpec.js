@@ -25,7 +25,7 @@ describe('searchController', function () {
           then: function (cb) {
             cb(searchResults);
           }
-        }
+        };
       });
     });
 
@@ -37,18 +37,18 @@ describe('searchController', function () {
 
 });
 
-// describe('searchFactory', function () {
-//   beforeEach(module('app'));
+describe('searchFactory', function () {
+  beforeEach(module('app'));
 
-//   var searchFactory;
-//   var $window;
-//   var $httpBackend;
+  var searchFactory;
+  var $window;
+  var $httpBackend;
 
-//   beforeEach(inject(function(_searchFactory_, _$window_, _$httpBackend_) {
-//     searchFactory = _searchFactory_;
-//     $window = _$window_;
-//     $httpBackend = _$httpBackend_;
-//   }));
+  beforeEach(inject(function(_searchFactory_, _$window_, _$httpBackend_) {
+    searchFactory = _searchFactory_;
+    $window = _$window_;
+    $httpBackend = _$httpBackend_;
+  }));
 
   // it('should call the youtube api', function () {
   //   $httpBackend.expect('GET', 'url').respond('['fake': 'example']);
@@ -59,4 +59,4 @@ describe('searchController', function () {
   // });
 
 
-//});
+});
