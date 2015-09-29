@@ -1,7 +1,7 @@
 //"use strict";
 
 // mocha tests: 
-describe('ajaxController', function () {
+describe('searchController', function () {
   var scope;
   var searchFactory;
   var ctrl;
@@ -30,5 +30,29 @@ describe('ajaxController', function () {
       expect(scope.searchResults).to.deep.equal({user: 'example artist', track: 'example track'});
     });
   });
+
+});
+
+describe('searchFactory', function () {
+  beforeEach(module('app'));
+
+  var searchFactory;
+  var $window;
+  var $httpBackend;
+
+  beforeEach(inject(function(_searchFactory_, _$window_, _$httpBackend_) {
+    searchFactory = _searchFactory_;
+    $window = _$window_;
+    $httpBackend = _$httpBackend_;
+  }));
+
+  it('should call the youtube api', function () {
+    $httpBackend.expect('GET', 'url').respond('['fake': 'example']);
+
+    $httpBackend.flush();
+
+    //assertion goes here;
+  });
+
 
 });
