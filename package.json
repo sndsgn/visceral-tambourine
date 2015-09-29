@@ -11,8 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "grunt": "^0.4.5",
-    "//jade": "~1.11.0",
-    "karma-chrome-launcher": "^0.2.0",
+    "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "sequelize": "^3.9.0",
     "serve-favicon": "~2.3.0"
@@ -22,11 +21,14 @@
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-uglify": "^0.9.2",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-requirejs": "^0.2.2",
+    "karma-sinon-chai": "^1.1.0",
     "mocha": "^2.3.3",
     "phantomjs": "^1.9.18",
-    "requirejs": "^2.1.20"
+    "requirejs": "^2.1.20",
+    "sinon": "^1.17.1"
   }
 }

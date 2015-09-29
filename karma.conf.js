@@ -12,7 +12,7 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
    // frameworks: ['mocha', 'chai', 'requirejs'],
 
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon-chai'],
 
 
 
@@ -26,7 +26,6 @@ module.exports = function(config) {
       'public/js/**/*.js',
 
       // our spec files   
-      'node_modules/chai/chai.js',
       'tests/**/*Spec.js'
     ],
 
