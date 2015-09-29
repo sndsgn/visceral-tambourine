@@ -13,7 +13,8 @@ app.factory('searchFactory', ['$http', '$window', function($http, $window) {
       });
     },
 
-    addSong: function(id) {
+    addSong: function(song) {
+      console.log(song);
     },
 
     showPlaylist: function() {

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -6,37 +6,33 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-        <!-- Place favicon.ico in the root directory -->
-
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="css/style.css">
-        <!-- <script src="js/vendor/modernizr-2.8.3.min.js"></script> -->
-    </head>
-    <body ng-app="app">
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-      <div ng-controller="searchController">
-
-        <input type="text" ngModel="test"></input>
-        <button ng-click="search()">button</button>
-        
-          
-        <script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
+        <link rel="stylesheet" href="tachyons.css">
+        <!--script src="//connect.soundcloud.com/sdk-2.0.0.js"></script-->
         <script src="bower_components/angular/angular.js"></script>
         <script src="js/app.js"></script>
         <script src="js/searchFactory.js"></script>
         <script src="js/searchController.js"></script>
+    </head>
+    <body ng-app="app">
+      <div class="center tc ptl mw-25-l mw-50-m" ng-controller="searchController">
+        <div class="pts pbs">
+          <input type="text" ng-model="searchTerm" placeholder="Search for a song" class="ptm pbm pam f3 w-100"></input>
+        </div>
+        <div class="pbs">
+          <button ng-click="search()" class="ptm pbm pam f3 bg-dark-blue white w-100">Search for Song</button>
+         </div>
+        <div class="ptm pbs">
+          <button ng-click="showPlaylist()" class="ptm pbm pam f3 bg-blue white w-100">Show Playlist</button>
+        </div>
 
+        <div class="pbm center tc">
+          <div class="ptm pbm" ng-repeat="song in searchResults">
+            <div class="f3 ba ptm pbm prm plm">{{song.title}}</div>
+            <div><img class="h5 v-mid w-100" ng-src="{{song.thumbnail}}" /></div>
+            <div><button class="ptm pbm plm prm f3 mrn bg-dark-blue white w-100" ng-click="addSong(song)">Add song to playlist</button></div>
+          </div>
+        </div>
       </div>
-
-
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
     </body>
 </html>

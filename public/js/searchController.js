@@ -9,19 +9,18 @@ app.controller('searchController', ['$scope', 'searchFactory', function($scope, 
       for(var song = 0; song < res.items.length; song++) {
         var songObj = {
           id: res.items[song].id.videoId,
-//          url: 'https://www.youtube.com/watch?v=' + res.items[song].id.videoId,
+          url: 'https://www.youtube.com/embed/' + res.items[song].id.videoId,
           title: res.items[song].snippet.title,
           thumbnail: res.items[song].snippet.thumbnails.medium.url
         };
         $scope.searchResults.push(songObj);
-        console.log($scope.searchResults);
       }
-      console.log(res);
     });
   };
 
-  $scope.addSong = function(id) {
-    searchFactory.addSong(id);
+  $scope.addSong = function(song) {
+    console.log(song);
+    searchFactory.addSong(song);
   };
 
 }]);
