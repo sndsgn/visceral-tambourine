@@ -1,7 +1,6 @@
 //searchController contains all of the client logic for handling different input from any user type.
 app.controller('searchController', ['$scope', 'searchFactory', function($scope, searchFactory) {
   $scope.searchResults = [];
-  
 
 //The the $scope's search method uses a factory method called getSearchResults to take the user search input
 //and query the YouTube API.
@@ -24,7 +23,6 @@ app.controller('searchController', ['$scope', 'searchFactory', function($scope, 
       }
     });
   };
-
 
 //The addSong method on the $scope passes the song object that is connected to the
 //click event attached to the "Add song to playlist" button which use the ng-click directive to call addSong.
