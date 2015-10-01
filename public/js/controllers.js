@@ -49,7 +49,10 @@ angular.module('app.controllers', [])
         //but the song has already been pushed when the the song added socket event
         //gets triggered just before. Still trying to figure this one out.
         //only happens when multiple people are in the event
-        $scope.songs = songs;
+        if ($scope.songs.length === 0) {
+
+          $scope.songs = songs;
+        }
 
       });
 
