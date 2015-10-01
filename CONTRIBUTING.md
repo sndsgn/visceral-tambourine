@@ -2,7 +2,7 @@
 
 Want to help make Yodel awesomer??
 
-*Here's how:*
+**Here's how:**
 
 Please read through these guidelines to make contributing to Yodel painless and happy for both you the altruistic
 soul and the tireless developers who brought Yodel into this world. 
@@ -19,13 +19,13 @@ Write documentation for every core feature
 
 1. [Fork the project](https://help.github.com/fork-a-repo/)
 2. Add upstream, `git remote add upstream https://github.com/visceral-tambourine/visceral-tambourine.git`  
-3. Cut a feature branch, `git checkout -b [feature-branch-name]`, for your work and follow this branch naming convention:  
+3. Cut a feature branch, `git checkout -b [feature-branch-name]`, for your work and follow this branch naming convention:
   - bug/...
   - feat/...
   - test/...
   - doc/...
   - refactor/...
-4. Make commits to your feature branch and prefix each commit like so:
+4. Make commits to your feature branch and prefix each commit like so: 
   - (feat) Added a new feature
   - (fix) Fixed inconsistent tests [Fixes #0] ***REFERENCE GITHUB ISSUE NUMBER WITH GITHUG KEYWORD SUCH AS FIXES IN BRACKETS FOR WAFFLE IO AUTOMATION
   - (refactor) ...
@@ -33,16 +33,16 @@ Write documentation for every core feature
   - (test) ...
   - (doc) ...
   - `git commit -m "(fix) Fixed inconsistent tests [Fixes #0]"`
-  -Keywords for closing issues - The following keywords will close an issue via commit message:
-    +close
-    +closes
-    +closed
-    +fix
-    +fixes
-    +fixed
-    +resolve
-    +resolves
-    +resolved
+  - Keywords for closing issues - The following keywords will close an issue via commit message:  
+    +close  
+    +closes  
+    +closed  
+    +fix  
+    +fixes  
+    +fixed  
+    +resolve  
+    +resolves  
+    +resolved  
 5. Make changes to your feature branch. When ready to make a pull request, pull down changes from upstream master to feature branch. 
   -git pull --rebase upstream master
   -Because rebase changes commits, you will have to push with the -f or --force flag to your branch after rebasing, as the history has changed in a way that git cannot resolve. You should never rebase or push with force to the master branch of your repository, as that will invalidate everyone elses' clones and checkouts of the repository.
@@ -62,7 +62,7 @@ This is just to help you organize your process
 - [ ] Did I cut my work branch off of master (don't cut new branches from existing feature brances)?
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
- - [ ] Do all of my changes directly relate to this change?
+- [ ] Do all of my changes directly relate to this change?
 - [ ] Did I rebase the upstream master branch after I finished all my
   work?
 - [ ] Did I write a clear pull request message detailing what changes I made?
