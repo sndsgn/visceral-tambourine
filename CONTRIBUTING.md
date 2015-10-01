@@ -7,155 +7,53 @@ Want to help make Yodel awesomer??
 Please read through these guidelines to make contributing to Yodel painless and happy for both you the altruistic
 soul and the tireless developers who brought Yodel into this world. 
 
+###Coding Guidelines:
+
+Follow [Hack Reactor Javascript style guide](https://github.com/hackreactor-labs/style-guide)   
+Heavily comment all aspects of your code.  
+Write tests for every core feature  
+Write documentation for every core feature  
+
 
 ## General Workflow
 
 1. [Fork the project](https://help.github.com/fork-a-repo/)
-1. Cut a namespaced feature branch from master, for example: 
+2. Add upstream, `git remote add upstream https://github.com/visceral-tambourine/visceral-tambourine.git`  
+3. Cut a feature branch, `git checkout -b [feature-branch-name]`, for your work and follow this branch naming convention:  
   - bug/...
   - feat/...
   - test/...
   - doc/...
   - refactor/...
-1. Make commits to your feature branch. Prefix each commit like so:
+4. Make commits to your feature branch and prefix each commit like so:
   - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+  - (fix) Fixed inconsistent tests [Fixes #0] ***REFERENCE GITHUB ISSUE NUMBER WITH GITHUG KEYWORD SUCH AS FIXES IN BRACKETS FOR WAFFLE IO AUTOMATION
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
   - (doc) ...
-1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a [pull request](https://help.github.com/articles/using-pull-requests/)
+  - `git commit -m "(fix) Fixed inconsistent tests [Fixes #0]"`
+  -Keywords for closing issues - The following keywords will close an issue via commit message:
+    +close
+    +closes
+    +closed
+    +fix
+    +fixes
+    +fixed
+    +resolve
+    +resolves
+    +resolved
+5. Make changes to your feature branch. When ready to make a pull request, pull down changes from upstream master to feature branch. 
+  -git pull --rebase upstream master
+  -Because rebase changes commits, you will have to push with the -f or --force flag to your branch after rebasing, as the history has changed in a way that git cannot resolve. You should never rebase or push with force to the master branch of your repository, as that will invalidate everyone elses' clones and checkouts of the repository.
    directly to master. Include a description of your changes.
-1. Your pull request will be reviewed by another maintainer. The point of code
-   reviews is to help keep the codebase clean and of high quality and, equally
-   as important, to help you grow as a programmer. If your code reviewer
-   requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer, and push your fixes as a single
-   new commit.
-1. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own commits.
-
-## Detailed Workflow
-
-### Fork the repo
-
-Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
-
-```
-git remote add upstream https://github.com/hackreactor-labs/visceral-tambourine.git
-```
-
-### Cut a namespaced feature branch from master
-
-Your branch should follow this naming convention:
-  - bug/...
-  - feat/...
-  - test/...
-  - doc/...
-  - refactor/...
-
-These commands will help you do this:
-
-``` bash
-
-# Creates your branch and brings you there
-git checkout -b `your-branch-name`
-```
-
-### Make commits to your feature branch. 
-
-Prefix each commit like so
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
-  - (refactor) ...
-  - (cleanup) ...
-  - (test) ...
-  - (doc) ...
-
-Make changes and commits on your branch, and make sure that you
-only make changes that are relevant to this branch. If you find
-yourself making unrelated changes, make a new branch for those
-changes.
-
-#### Commit Message Guidelines
-
-- Commit messages should be written in the present tense; e.g. "Fix continuous
-  integration script".
-- The first line of your commit message should be a brief summary of what the
-  commit changes. Aim for about 70 characters max. Remember: This is a summary,
-  not a detailed description of everything that changed.
-- If you want to explain the commit in more depth, following the first line should
-  be a blank line and then a more detailed description of the commit. This can be
-  as detailed as you want, so dig into details here and keep the first line short.
-
-### Rebase upstream changes into your branch
-
-Once you are done making changes, you can begin the process of getting
-your code merged into the main repo. Step 1 is to rebase upstream
-changes to the master branch into yours by running this command
-from your branch:
-
-```bash
-git pull --rebase upstream master
-```
-
-This will start the rebase process. You must commit all of your changes
-before doing this. If there are no conflicts, this should just roll all
-of your changes back on top of the changes from upstream, leading to a
-nice, clean, linear commit history.
-
-If there are conflicting changes, git will start yelling at you part way
-through the rebasing process. Git will pause rebasing to allow you to sort
-out the conflicts. You do this the same way you solve merge conflicts,
-by checking all of the files git says have been changed in both histories
-and picking the versions you want. Be aware that these changes will show
-up in your pull request, so try and incorporate upstream changes as much
-as possible.
-
-You pick a file by `git add`ing it - you do not make commits during a
-rebase.
-
-Once you are done fixing conflicts for a specific commit, run:
-
-```bash
-git rebase --continue
-```
-
-This will continue the rebasing process. Once you are done fixing all
-conflicts you should run the existing tests to make sure you didn’t break
-anything, then run your new tests (there are new tests, right?) and
-make sure they work also.
-
-If rebasing broke anything, fix it, then repeat the above process until
-you get here again and nothing is broken and all the tests pass.
-
-### Make a pull request
-
-Make a clear pull request from your fork and branch to the upstream master
-branch, detailing exactly what changes you made and what feature this
-should add. The clearer your pull request is the faster you can get
-your changes incorporated into this repo.
-
-At least one other person MUST give your changes a code review, and once
-they are satisfied they will merge your changes into upstream. Alternatively,
-they may have some requested changes. You should make more commits to your
-branch to fix these, then follow this process again from rebasing onwards.
-
-Once you get back here, make a comment requesting further review and
-someone will look at your code again. If they like it, it will get merged,
-else, just repeat again.
-
-Thanks for contributing!
-
-### Guidelines
-
-1. Uphold the current code standard:
-    - Keep your code [DRY][].
-    - Apply the [boy scout rule][].
-    - Follow [STYLE-GUIDE.md](STYLE-GUIDE.md)
-1. Run the [tests][] before submitting a pull request.
-1. Tests are very, very important. Submit tests if your pull request contains
-   new, testable behavior.
-1. Your pull request is comprised of a single ([squashed][]) commit.
+6. If you run into merge conflict issues, correct them and then continue the rebase. You pick a file by git adding it. Do not make commits during a rebase. Once you are done fixing conflicts for a specific commit, run:
+  `git rebase --continue`
+7. Push to your fork's feature branch  **** NEVER PUSH ORIGIN UPSTREAM MASTER *** WE ALL HAVE RIGHTS TO DO IT, BUT IT CAN COMPROMISE OUR CODE
+  `git push origin feature-branch-name`
+8. Make a clear pull request from your fork and branch to the upstream master branch, detailing exactly what changes you made and what feature this should add. The clearer your pull request is the faster you can get your changes incorporated into this repo.  At least one other person MUST give your changes a code review, and once they are satisfied they will merge your changes into upstream. Alternatively, they may have some requested changes. You should make more commits to your branch to fix these, then follow this process again from rebasing onwards.
+  -[pull request](https://help.github.com/articles/using-pull-requests/)
+9. If changes need to be made, make the corrections, make commits, do  git pull --rebase upstream master, fix any conflicts, then do git push origin feature-branch-name, respond to comment on original pull request to person reviewing the pull request by using the @ sign and their username, and they will be able to merge the commits without you having to make another pull request.  
 
 ## Checklist:
 
@@ -174,16 +72,3 @@ This is just to help you organize your process
 If you follow all of these guidelines and make good changes, you should have
 no problem getting your changes merged in.
 
-
-##links 
-[style guide](https://github.com/hackreactor-labs/style-guide)  
-[n-queens](https://github.com/hackreactor-labs/n-queens)  
-[Underbar](https://github.com/hackreactor-labs/underbar)  
-[curriculum workflow diagram](http://i.imgur.com/p0e4tQK.png)  
-[cons of merge](https://f.cloud.github.com/assets/1577682/1458274/1391ac28-435e-11e3-88b6-69c85029c978.png)  
-[Bookstrap](https://github.com/hackreactor/bookstrap)  
-[Taser](https://github.com/hackreactor/bookstrap)  
-[tools workflow diagram](http://i.imgur.com/kzlrDj7.png)  
-[Git Flow](http://nvie.com/posts/a-successful-git-branching-model/)  
-[GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html)  
-[Squash](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)  
