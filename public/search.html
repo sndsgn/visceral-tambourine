@@ -1,0 +1,23 @@
+<button ng-click="action()">action</button>
+
+
+  <form ng-submit="getSearchResults(searchTerm)" class="pts pbs">
+    <input type="text" name="searchTerm" ng-model="searchTerm" placeholder="Search for a song" class="ptm pbm pam f3 w-100"></input>
+    <div class="pbs">
+      <button type="submit" class="ptm pbm pam f3 bg-dark-blue white w-100">Search for Song</button>
+    </div>
+    <div class="ptm pbs">
+      <button ng-click="showPlaylist()" class="ptm pbm pam f3 bg-blue white w-100">Show Playlist</button>
+    </div>
+  </form>
+
+  <div class="pbm center tc">
+    <div class="ptm pbm" ng-repeat="song in searchResults">
+      <div class="f3 ba ptm pbm prm plm">{{song.title}}</div>
+      <div><img class="h5 v-mid w-100" ng-src="{{song.thumbnail}}" /></div>
+      <div><button class="ptm pbm plm prm f3 mrn bg-dark-blue white w-100" ng-click="addSong(song)">Add song to playlist</button></div>
+    </div>
+  </div>
+
+
+<button ng-click="home()">home</button>

@@ -1,6 +1,6 @@
 {
   "name": "visceral-tambourine",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "authors": [
     "Aaron Norby",
     "Phong Pham",
@@ -10,7 +10,7 @@
   "description": "Collaborative Music Playing",
   "main": "app.js",
   "license": "MIT",
-  "homepage": "http://visceraltambourine.com",
+  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -20,8 +20,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.6",
-    "angular-ui-router": "ui-router#~0.2.15",
-    "bootstrap": "~3.3.5"
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7", 
+    "socket.io": "~1.3.7",
   }
 }

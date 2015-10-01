@@ -1,0 +1,19 @@
+
+  <h1 class="center tc tracked ttu">Playlist</h1>
+
+  <button ng-click="search()">search</button>
+
+  <div id="player" class="center tc pbm ptm"></div>
+  <table class="center tc pbm ptm">
+    <tr>
+      <th class="prm plm">Order</th>
+      <th class="prm plm">Cover</th>
+      <th class="prm plm">Title</th>
+    </tr>
+    <tr ng-repeat="song in songs">
+      <td class="prm plm">{{song.index}}</td>
+      <td class="prm plm">{{song.thumbnail}}</td>
+      <td class="prm plm">{{song.title}}</td>
+    </tr>
+  </table>
+
