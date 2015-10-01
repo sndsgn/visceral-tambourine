@@ -1,38 +1,21 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="tachyons.css">
-        <!--script src="//connect.soundcloud.com/sdk-2.0.0.js"></script-->
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/searchFactory.js"></script>
-        <script src="js/searchController.js"></script>
-    </head>
-    <body ng-app="app">
-      <div class="center tc ptl mw-25-l mw-50-m" ng-controller="searchController">
-        <div class="pts pbs">
-          <input type="text" ng-model="searchTerm" placeholder="Search for a song" class="ptm pbm pam f3 w-100"></input>
-        </div>
-        <div class="pbs">
-          <button ng-click="search()" class="ptm pbm pam f3 bg-dark-blue white w-100">Search for Song</button>
-         </div>
-        <div class="ptm pbs">
-          <button ng-click="showPlaylist()" class="ptm pbm pam f3 bg-blue white w-100">Show Playlist</button>
-        </div>
+<html ng-app="app">
+<head>
+  <title>
 
-        <div class="pbm center tc">
-          <div class="ptm pbm" ng-repeat="song in searchResults">
-            <div class="f3 ba ptm pbm prm plm">{{song.title}}</div>
-            <div><img class="h5 v-mid w-100" ng-src="{{song.thumbnail}}" /></div>
-            <div><button class="ptm pbm plm prm f3 mrn bg-dark-blue white w-100" ng-click="addSong(song)">Add song to playlist</button></div>
-          </div>
-        </div>
-      </div>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 
-    </body>
+<div ng-view></div>
+
+<link rel="stylesheet" href="tachyons.css">
+<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="factories.js"></script>
+<script src="controllers.js"></script>
+<script src="app.js"></script>
+</body>
 </html>
