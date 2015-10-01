@@ -10,9 +10,9 @@
       <th class="prm plm">Cover</th>
       <th class="prm plm">Title</th>
     </tr>
-    <tr ng-repeat="song in songs">
+    <tr ng-repeat="song in songs track by $index">
       <td class="prm plm">{{song.index}}</td>
-      <td class="prm plm">{{song.thumbnail}}</td>
+      <td class="prm plm"><img src="{{song.thumbnail}}" /></td>
       <td class="prm plm">{{song.title}}</td>
     </tr>
   </table>

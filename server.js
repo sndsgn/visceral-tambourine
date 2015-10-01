@@ -4,7 +4,7 @@ var http    = require('http'),
     server  = http.Server(app),
     io      = require('socket.io')(server);
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function (req, res) {
