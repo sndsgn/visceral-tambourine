@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+
+    <title>Example2</title>
+
+    
+  </head>
+  <body>
+    This example starts with a playlist of video ids and loads them one after the
+    other. It doesn't use the player.cuePlaylist or player.loadPlaylist methods.
+    Instead, it listens for player state changes and checks if they're "ended"
+    events. 
+
+    <div id="player"></div>
+
+    <script>
+      if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig'])
+      {var YTConfig = {'host': 'http://www.youtube.com'};}if (!YT.loading     )
+      {YT.loading = 1;(function(){var l = [];YT.ready = function(f) {if (YT.loaded)
+      {f();} else {l.push(f);}};window.onYTReady = function() {YT.loaded = 1;for (var i
+      = 0; i < l.length; i++) {try {l[i]();} catch (e) {}}};YT.setConfig =
+         function(c) {for (var k in c) {if (c.hasOwnProperty(k)) {YTConfig[k] =
+         c[k];}}};var a = document.createElement('script');a.type =
+         'text/javascript';a.id = 'www-widgetapi-script';a.src = 'https:' +
+         '//s.ytimg.com/yts/jsbin/www-widgetapi-vflqb8CPD/www-widgetapi.js';a.async
+         = true;var b =
+         document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a,
+        b);})();}
+    </script>
+
+    <script>
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '200',
+          width: '200',
+          //videoId: 'CpmDAu_47OE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': loadNext
+          }
+        });
+      }
+      
+      var playlist = ['vQhqikWnQCU', 'GBvLzHJ6mh8', 'yO7MWuJ7zLA'];
+      var next = 0;
+
+      function onPlayerReady(event) {
+        console.log("data: ", event.data);
+        player.cueVideoById(playlist[next]);
+        next++;
+        event.target.playVideo();
+      }
+
+      function loadNext(event) {
+        console.log("data: ", event.data);
+        if (playlist[next] && event.data === YT.PlayerState.ENDED) {
+          console.log("here");
+          player.loadVideoById(playlist[next]);
+          next++;
+        }
+      }
+
+            
+      
+    
+    </script>
+    
+  </body>
+</html>

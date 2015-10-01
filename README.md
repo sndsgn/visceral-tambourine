@@ -1,15 +1,16 @@
 # visceral-tambourine
-Changing the world so hard!
 
-# Project Name
+Everyone's the DJ.
 
-> Pithy project description
+# Project Description
+
+A shared music experience where anyone invited can participate in choosing the music.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Alex Hutchinson
+  - __Scrum Master__: Robert Forloine
+  - __Development Team Members__: Phong Pham, Aaron Norby
 
 ## Table of Contents
 
@@ -27,11 +28,7 @@ Changing the world so hard!
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 4.1.x
 
 ## Development
 
@@ -47,8 +44,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
+View the project roadmap [here](https://github.com/visceral-tambourine/visceral-tambourine/issues)
 
 ## Contributing
 
