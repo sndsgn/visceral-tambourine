@@ -46,12 +46,7 @@ angular.module('app.controllers', [])
       //server responses to this with the eventState
       socket.on('joined', function (songs) {
         //add the songs from the server to the local array
-        //we are getting an ng-repeate dups error here beacause
-        //when the user comes back from the search page
-        //this socket event is triggered, refreshing the local songs array
-        //but the song has already been pushed when the the song added socket event
-        //gets triggered just before. Still trying to figure this one out.
-        //only happens when multiple people are in the event
+        //making sure thats its empty before doing so
         if ($scope.songs.length === 0) {
 
           $scope.songs = songs;
@@ -66,8 +61,8 @@ angular.module('app.controllers', [])
         $scope.songs.push(song);
       });
 
-      
-            
+
+
       // fired when the youtube iframe api is ready
       $window.onPlayerReady = function onPlayerReady(event) {
         console.log("ready");
@@ -85,7 +80,7 @@ angular.module('app.controllers', [])
           console.log("loadNext");
           player.loadVideoById($scope.songs[$scope.songIndex].id);
           $scope.songIndex++;
-        }        
+        }
         console.log("loadnext");
       };
 
@@ -98,7 +93,7 @@ angular.module('app.controllers', [])
               $window.onYouTubeIframeAPIReady();
             }
           });
-      
+
     }
 ])
 .controller('SearchController', ['$scope', '$location', 'socket', 'searchFactory', 'Event',
@@ -122,6 +117,8 @@ angular.module('app.controllers', [])
       //defers the http call to the factory, then adds the songs to the
       //local array
       $scope.getSearchResults = function (searchTerm) {
+        $scope.searchResults = [];
+
         //********Original function name $scope.search. Make sure used consistently in partials and js files.*********
         searchFactory.getSearchResults(searchTerm)
           //******Originally $scope.searchTerm was passed as an argument to the factory method******
@@ -136,6 +133,7 @@ angular.module('app.controllers', [])
               thumbnail: song.snippet.thumbnails.medium.url
               };
               $scope.searchResults.push(songObj);
+              $scope.searchTerm = '';
             });
           });
       };
