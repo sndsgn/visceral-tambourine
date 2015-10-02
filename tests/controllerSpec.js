@@ -45,6 +45,40 @@ describe('searchController', function () {
 
 });
 
+describe('LandingController', function () {
+  var scope, location, socket, event, ctrl;
+  
+  beforeEach(module('app.controllers'));
+  beforeEach(module('app.services'));
+  
+  beforeEach(inject(function($rootScope, $controller, $location, _socket_, _Event_) {
+    scope = $rootScope.$new();
+    ctrl = $controller('LandingController', {$scope: scope});
+    location = $location;
+    socket = _socket_;
+    Event = _Event_;
+  }));
+
+  describe('join function', function () {
+    beforeEach(function () {
+      sinon.stub(socket, 'emit', function() {});
+    });
+
+    it('should add an event on join', function () {
+      scope.join('Liquid Swords');
+      expect(Event.event).to.equal('Liquid Swords');
+    });
+
+  });
+
+
+
+
+
+});
+
+
+
 describe('searchFactory', function () {
   beforeEach(module('app'));
 
