@@ -21,6 +21,7 @@ module.exports = function(config) {
       // angular source
       'public/bower_components/angular/angular.js',
       'public/bower_components/angular-mocks/angular-mocks.js',
+      'tests/scripts/socket.io-1.3.5.js',
 
       // app code
       'public/js/**/*.js',
