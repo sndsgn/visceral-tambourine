@@ -3,22 +3,30 @@
 // mocha tests: 
 describe('searchController', function () {
   var scope;
+  var location;
+  var socket;
+  var Event;
   var searchFactory;
   var ctrl;
 
-  beforeEach(module('app'));
+  beforeEach(module('app.controllers'));
+  beforeEach(module('app.services'));
 
-  beforeEach(inject(function($rootScope, $controller, _searchFactory_) {
+  
+  beforeEach(inject(function($rootScope, $location,  $controller, _searchFactory_, _socket_, _Event_) {
     scope = $rootScope.$new();
-    ctrl = $controller('searchController', {$scope: scope});
+    ctrl = $controller('SearchController', {$scope: scope});
     searchFactory = _searchFactory_;
+    socket = _socket_;
+    Event = _Event_;
+    location = $location;
   }));
 
-  describe('search function', function () {
+  describe('getSearchResults', function () {
     beforeEach(function () {
       var searchResults = {items:[{id: {videoId:'example id'}, snippet: {title: 'example title', thumbnails: {medium: {url: 'thumbnailUrl'}}}}]};
       scope.$apply(function () {
-        scope.test = 'test search text';
+        scope.searchTerm = 'test search text';
       });
       sinon.stub(searchFactory, 'getSearchResults', function() {
         return {
@@ -29,8 +37,8 @@ describe('searchController', function () {
       });
     });
 
-    it('should return search results when search() is called', function () {
-      scope.search();
+    it('should return search results when getSearchResults() is called', function () {
+      scope.getSearchResults();
       expect(scope.searchResults[0].id).to.equal('example id');
     });
   });
