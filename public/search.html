@@ -1,21 +1,24 @@
+<div class="mw-18 center tc">
+  <form ng-submit="getSearchResults(searchTerm)" class="w-i pts pbs">
+    <input type="text" name="searchTerm" ng-model="searchTerm" placeholder="Song / Artist" class="darkest-blue tracked ptm pbm f2 tc br3 bal w-100"></input>
 
-  <form ng-submit="getSearchResults(searchTerm)" class="pts pbs">
-    <input type="text" name="searchTerm" ng-model="searchTerm" placeholder="Search for a song" class="ptm pbm pam f3 w-100"></input>
-    <div class="pbs">
-      <button type="submit" class="ptm pbm pam f3 bg-dark-blue white">Search for Song</button>
+
+    <div class="pts pbl w-100">
+      <button type="submit" class="btn br3 pbm ptm  w-100 bg-darkest-blue white f2 b--blue tracked">Search</button>
     </div>
-    <div class="ptm pbs">
-      <button ng-click="showPlaylist()" class="ptm pbm pam f3 bg-blue white">Show Playlist</button>
+    <div class="ptm pbs w-100">
+      <button ng-click="showPlaylist()" class="btn br3 pbm ptm  w-100 white bg-blue b--dark-blue f2 tracked">Show Playlist</button>
     </div>
   </form>
 
   <div class="pbm center tc">
     <div class="ptm pbm" ng-repeat="song in searchResults">
-      <div class="f3 ba ptm pbm prm plm">{{song.title}}</div>
-      <div><img class="h5 v-mid w-100" ng-src="{{song.thumbnail}}" /></div>
-      <div><button class="ptm pbm plm prm f3 mrn bg-dark-blue white w-100" ng-click="addSong(song)">Add song to playlist</button></div>
+      <div class="f3 bal b--darkest-blue btrr3 btlr3 ptm pbm w-i darkest-blue prs pls">{{song.title}}</div>
+      <div><img class="h5 v-mid" ng-src="{{song.thumbnail}}" /></div>
+      <div><button class="ptm pbm mrn w-i f3 mrn bg-dark-blue white bblr3 bbrr3 bg-darest-blues white w-100 b--blue btn" ng-click="addSong(song)">Add song to playlist</button></div>
     </div>
   </div>
 
 
-<button ng-click="home()">home</button>
+  <button ng-click="home()" class="btn br3 pbm ptm w-100 white bg-dark-blue b--dark-blue f2 tracked">Home</button>
+</div>

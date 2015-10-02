@@ -1,20 +1,19 @@
-
-
+<div class="pbl">
   <button ng-click="search()" class="btn br3 pbm ptm prxl plxl bg-darkest-blue white f2 b--blue tracked">Add Songs</button>
+</div>
 
-  <h2 class="center tc mega darkest-blue mbm">playlist</h2>
+  <div id="player" class="center tc pbl ptm"></div>
+  <table class="center tc pbl ptl f2 darkest-blue w-100">
+    <tr class="bg-dark-blue white">
+      <th class="prs plm ptm pbm">Order</th>
+      <th class="prm pls ptm pbm">Cover</th>
+      <th class="prm plm ptm pbm">Title</th>
 
-  <div id="player" class="center tc pbm ptm"></div>
-  <table class="center tc pbm ptm f1 darkest-blue">
-    <tr>
-      <th class="prl pll">Order</th>
-      <th class="prl pll">Cover</th>
-      <th class="prl pll">Title</th>
     </tr>
     <tr ng-repeat="song in songs track by $index">
-      <td class="prl pll">{{song.index}}</td>
-      <td class="prl pll"><img src="{{song.thumbnail}}" /></td>
-      <td class="prl pll">{{song.title}}</td>
+      <td class="prm plm">{{song.index}}</td>
+      <td class="prm plm"><img src="{{song.thumbnail}}" /></td>
+      <td class="prm plm">{{song.title}}</td>
     </tr>
   </table>
 
