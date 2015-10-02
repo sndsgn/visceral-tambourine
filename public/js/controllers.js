@@ -75,6 +75,8 @@ angular.module('app.controllers', [])
             player.cueVideoById($scope.songs[$scope.songIndex].id);
             $scope.songIndex++;
             event.target.playVideo();
+          } else {
+            player.destroy();
           }
         };
 
