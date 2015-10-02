@@ -27,10 +27,13 @@ angular.module('app.controllers', [])
         $location.path('/events/' + event);
       };
     }])
-.controller('EventController', ['$scope', '$location', 'socket', 'Event',
-    function ($scope, $location, socket, Event) {
+.controller('EventController', ['$window', '$scope', '$location', 'socket', 'Event',
+    function ($window, $scope, $location, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
+
+      // to keep track of which song is up
+      $scope.songIndex = 0;
 
       //link to the search view
       $scope.search = function () {
@@ -62,6 +65,40 @@ angular.module('app.controllers', [])
       socket.on('songAdded', function (song) {
         $scope.songs.push(song);
       });
+
+      
+            
+      // fired when the youtube iframe api is ready
+      $window.onPlayerReady = function onPlayerReady(event) {
+        console.log("ready");
+        if ($scope.songs[$scope.songIndex]) {
+          player.cueVideoById($scope.songs[$scope.songIndex].id);
+          $scope.songIndex++;
+          event.target.playVideo();
+        }
+      };
+
+      // fired on any youtube state change, checks for a video ended event and
+      // plays next song if yes
+      $window.loadNext = function loadNext(event) {
+        if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED) {
+          console.log("loadNext");
+          player.loadVideoById($scope.songs[$scope.songIndex].id);
+          $scope.songIndex++;
+        }        
+        console.log("loadnext");
+      };
+
+      // if the songs list used to be empty but now isn't, call the
+      // onYouTubeIframAPIReady function (for loading reasons, has to be called
+      // manually like this when you return from the search page)
+      $scope.$watch(function(scope) { return scope.songs; },
+          function(newVal, oldVal) {
+            if (oldVal.length === 0 && newVal.length > 0) {
+              $window.onYouTubeIframeAPIReady();
+            }
+          });
+      
     }
 ])
 .controller('SearchController', ['$scope', '$location', 'socket', 'searchFactory', 'Event',
