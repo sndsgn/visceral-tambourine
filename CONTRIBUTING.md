@@ -49,7 +49,7 @@ Write documentation for every core feature
    directly to master. Include a description of your changes.
 6. If you run into merge conflict issues, correct them and then continue the rebase. You pick a file by git adding it. Do not make commits during a rebase. Once you are done fixing conflicts for a specific commit, run:
   `git rebase --continue`
-7. Push to your fork's feature branch  **** NEVER PUSH ORIGIN UPSTREAM MASTER *** WE ALL HAVE RIGHTS TO DO IT, BUT IT CAN COMPROMISE OUR CODE
+7. Push to your fork's feature branch.
   `git push origin feature-branch-name`
 8. Make a clear pull request from your fork and branch to the upstream master branch, detailing exactly what changes you made and what feature this should add. The clearer your pull request is the faster you can get your changes incorporated into this repo.  At least one other person MUST give your changes a code review, and once they are satisfied they will merge your changes into upstream. Alternatively, they may have some requested changes. You should make more commits to your branch to fix these, then follow this process again from rebasing onwards.
   -[pull request](https://help.github.com/articles/using-pull-requests/)
