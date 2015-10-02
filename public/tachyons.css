@@ -536,8 +536,20 @@ table {
   padding-left: 32px;
 }
 
+.pl-40 {
+  padding-left: 40px;
+}
+
+.pl-48 {
+  padding-left: 48px;
+}
+
 .plxl {
   padding-left: 64px;
+}
+
+.pl-96 {
+  padding-left: 96px;
 }
 
 .plxxl {
@@ -568,8 +580,20 @@ table {
   padding-right: 32px;
 }
 
+.pr-40 {
+  padding-right: 40px;
+}
+
+.pr-48 {
+  padding-right: 48px;
+}
+
 .prxl {
   padding-right: 64px;
+}
+
+.pr-96 {
+  padding-right: 96px;
 }
 
 .prxxl {
@@ -3155,6 +3179,22 @@ input[type="password"]:after,
   border-radius: .5rem;
 }
 
+.bbrr3 {
+  border-bottom-right-radius: .5rem;
+}
+
+.bblr3 {
+  border-bottom-left-radius: .5rem;
+}
+
+.btrr3 {
+  border-top-right-radius: .5rem;
+}
+
+.btlr3 {
+  border-top-left-radius: .5rem;
+}
+
 .br4 {
   border-radius: 1rem;
 }
@@ -4463,6 +4503,9 @@ code,
   height: inherit;
 }
 
+.w-i {
+  width: inherit;
+}
 @media screen and (min-width: 30em) {
   .h-1-ns {
     height: 1rem;
@@ -4803,6 +4846,10 @@ img {
 
 */
 
+.tracked-light {
+  letter-spacing: .14em;
+}
+
 .tracked {
   letter-spacing: .16em;
 }
@@ -5033,6 +5080,10 @@ img {
 
 .mw5 {
   max-width: 16rem;
+}
+
+.mw-18 {
+  max-width: 18rem;
 }
 
 .mw6 {
