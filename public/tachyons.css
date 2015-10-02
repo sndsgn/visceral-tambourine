@@ -2586,6 +2586,10 @@ input[type="password"]:after,
   border-width: 0;
 }
 
+.bal {    
+  border: #002f86 solid 2px;
+}
+
 .ba {
   border-style: solid;
   border-width: 1px;
@@ -4918,6 +4922,18 @@ img {
    LINKS
 
 */
+
+
+.btn:hover {
+  color: #64a8ff;
+  border: 2px solid #7FDBFF;
+  -webkit-transition: background-color 0.3s, color 0.3s, border 0.3s;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; 
+}
+
+.button:focus {
+  transition: color .15s ease-in;
+}
 
 .link {
   text-decoration: none;
@@ -7824,8 +7840,16 @@ img {
   padding-left: 8rem;
 }
 
+.pl-other {
+  padding-left: 6rem
+}
+
+.pl-special {
+  padding-left: 7rem
+}
+
 .plxxxl {
-  padding-left: 16rem;
+  padding-left: 10rem;
 }
 
 .prn {
@@ -7852,12 +7876,20 @@ img {
   padding-right: 4rem;
 }
 
+.pr-other {
+  padding-right: 6rem
+}
+
+.pr-special {
+  padding-right: 7rem
+}
+
 .prxxl {
   padding-right: 8rem;
 }
 
 .prxxxl {
-  padding-right: 16rem;
+  padding-right: 10rem;
 }
 
 .pbn {
@@ -9901,6 +9933,34 @@ img {
    TYPE SCALE
 
 */
+
+
+.rotate {
+
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+
+.ultra-mega {
+  font-size: 6rem;
+}
+
+.super-mega {
+  font-size: 5rem;
+}
 
 .mega {
   font-size: 4rem;
