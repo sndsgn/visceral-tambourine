@@ -63,6 +63,7 @@ showPlaylist: function () {}
   //globally stored event name for routing purposes.
   return {
     event: '',
+    creator: ''
   };
 });
 

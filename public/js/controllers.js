@@ -7,6 +7,7 @@ angular.module('app.controllers', [])
         socket.emit('join', event);
         //set the name of the event. Used for routing purposes
         Event.event = event;
+
         //move the insider into the event
         $location.path('/events/' + event);
       };
@@ -21,6 +22,9 @@ angular.module('app.controllers', [])
       $scope.create = function (event) {
         //set the name of the event.
         Event.event = event;
+        console.log(socket.id());
+        Event.creator = socket.id();
+        console.log(Event.creator);
         //send the event to the server so it can do creation things
         socket.emit('create', event);
         //redirect  to the event
@@ -64,37 +68,41 @@ angular.module('app.controllers', [])
 
 
       // fired when the youtube iframe api is ready
-      $window.onPlayerReady = function onPlayerReady(event) {
-        console.log("ready");
-        if ($scope.songs[$scope.songIndex]) {
-          player.cueVideoById($scope.songs[$scope.songIndex].id);
-          $scope.songIndex++;
-          event.target.playVideo();
-        }
-      };
 
-      // fired on any youtube state change, checks for a video ended event and
-      // plays next song if yes
-      $window.loadNext = function loadNext(event) {
-        if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED) {
-          console.log("loadNext");
-          player.loadVideoById($scope.songs[$scope.songIndex].id);
-          $scope.songIndex++;
-        }
-        console.log("loadnext");
-      };
+        $window.onPlayerReady = function onPlayerReady(event) {
+          console.log("ready");
+          if ($scope.songs[$scope.songIndex] && socket.id() === Event.creator) {
+            player.cueVideoById($scope.songs[$scope.songIndex].id);
+            $scope.songIndex++;
+            event.target.playVideo();
+          }
+        };
 
-      // if the songs list used to be empty but now isn't, call the
-      // onYouTubeIframAPIReady function (for loading reasons, has to be called
-      // manually like this when you return from the search page)
-      $scope.$watch(function(scope) { return scope.songs; },
-          function(newVal, oldVal) {
+        // fired on any youtube state change, checks for a video ended event and
+        // plays next song if yes
+        $window.loadNext = function loadNext(event) {
+          if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED && socket.id() === Event.creator) {
+            console.log("loadNext");
+            player.loadVideoById($scope.songs[$scope.songIndex].id);
+            $scope.songIndex++;
+          }
+          console.log("loadnext");
+        };
+
+        // if the songs list used to be empty but now isn't, call the
+        // onYouTubeIframAPIReady function (for loading reasons, has to be called
+        // manually like this when you return from the search page)
+        $scope.$watch(function (scope) {
+            return scope.songs;
+          },
+          function (newVal, oldVal) {
             if (oldVal.length === 0 && newVal.length > 0) {
               $window.onYouTubeIframeAPIReady();
             }
           });
 
-    }
+        }
+
 ])
 .controller('SearchController', ['$scope', '$location', 'socket', 'searchFactory', 'Event',
     //******SearchController capitalized here, but not in original file. Check that it is consistently used in *****
