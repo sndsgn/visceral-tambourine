@@ -4,10 +4,10 @@
 
 
     <div class="pts pbl w-100">
-      <button type="submit" class="btn br3 pbm ptm  w-100 bg-darkest-blue white f2 b--blue tracked">Search</button>
+      <button type="submit" class="search-button btn br3 pbm ptm  w-100 bg-darkest-blue white f2 b--blue tracked">Search</button>
     </div>
     <div class="ptm pbs w-100">
-      <button ng-click="home()" class="btn br3 pbm ptm  w-100 white bg-blue b--dark-blue f2 tracked">Show Playlist</button>
+      <button ng-click="home()" class="home-button btn br3 pbm ptm  w-100 white bg-blue b--dark-blue f2 tracked">Show Playlist</button>
     </div>
   </form>
 
@@ -15,7 +15,7 @@
     <div class="ptm pbm" ng-repeat="song in searchResults">
       <div class="f3 bal b--darkest-blue btrr3 btlr3 ptm pbm w-i darkest-blue prs pls">{{song.title}}</div>
       <div><img class="h5 v-mid" ng-src="{{song.thumbnail}}" /></div>
-      <div><button class="ptm pbm mrn w-i f3 mrn bg-dark-blue white bblr3 bbrr3 bg-darest-blues white w-100 b--blue btn" ng-click="addSong(song)">Add song to playlist</button></div>
+      <div><button class="add-song ptm pbm mrn w-i f3 mrn bg-dark-blue white bblr3 bbrr3 bg-darest-blues white w-100 b--blue btn" ng-click="addSong(song)">Add song to playlist</button></div>
     </div>
   </div>
 </div>
