@@ -150,7 +150,8 @@ module.exports = function(grunt) {
      grunt.registerTask('build', [
        'concat',
        'uglify',
-       'cssmin'
+       'cssmin',
+       'bower-install'
      ]);
 
     grunt.registerTask('upload', function(n) {
@@ -160,8 +161,6 @@ module.exports = function(grunt) {
    grunt.registerTask('deploy', [
      'test',
      'build',
-     'bower-install',
-     'upload'
    ]);
 
 };

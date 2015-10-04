@@ -45,7 +45,7 @@
   "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "postinstall": "bash ./post_install.sh"
+    "postinstall": "grunt build",
+    "start": "nodemon server.js"
   }
 }
