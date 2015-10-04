@@ -2,16 +2,16 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    concat: {
-      options: {
-        separator: ';'
-      },
-      dist: {
-        src: ['public/js/**/*.js'],
-        dest: 'public/dist/<%= pkg.name %>.js'
-      }
-          },
-
+//    concat: {
+//      options: {
+//        separator: ';'
+//      },
+//      dist: {
+//        src: ['public/js/**/*.js'],
+//        dest: 'public/dist/<%= pkg.name %>.js'
+//      }
+//          },
+//
       mochaTest: {
         test: {
           options: {
@@ -27,16 +27,16 @@ module.exports = function(grunt) {
         }
       },
 
-      uglify: {
-        options: {
-          banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-        },
-      dist: {
-        files: {
-          'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
-      }
-            },
+//      uglify: {
+//        options: {
+//          banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+//        },
+//      dist: {
+//        files: {
+//          'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+//        }
+//      }
+//            },
       jshint: {
         files: [
           'Gruntfile.js',
