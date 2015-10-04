@@ -21,7 +21,7 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
         controller: 'EventController'
       })
       .state('event.search', {
-        url: '/events/:event/search',
+        url: '/search',
         templateUrl: 'event.search.html',
         controller: 'SearchController'
       });
