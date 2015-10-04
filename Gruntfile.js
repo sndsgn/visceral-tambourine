@@ -88,7 +88,6 @@ module.exports = function(grunt) {
             command: [
 //            'git add -f public/bower_components',
 //            'git commit -m "force add bower libs"',
-            'git commit -m "Updates file path",          
             'git push heroku master',
             'heroku open'
             ].join('&&'),
