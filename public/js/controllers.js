@@ -31,8 +31,8 @@ angular.module('app.controllers', [])
         $location.path('/events/' + event);
       };
     }])
-.controller('EventController', ['$window', '$scope', '$location', 'socket', 'Event',
-    function ($window, $scope, $location, socket, Event) {
+.controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
+    function ($window, $scope, $state, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
 
@@ -41,20 +41,14 @@ angular.module('app.controllers', [])
 
       //link to the search view
       $scope.search = function () {
-        $location.path('/events/' + Event.event + '/search');
+        $state.go('event.search');
       };
       var roomInvite = $location.absUrl();
       $scope.roomInvite = roomInvite;
       $scope.shareEvent = function() {
         new Clipboard('.btn');
-
-        console.log("I WANNA SHARE")
-        console.log('skrilla Loc', $location)
-        console.log('loc.absurl', $location.absUrl())
-
       };
 
-      //$scope.currentEvent = roomInvite ;
       //let the server know that insider has arrived in the room.
       socket.emit('joined');
 
@@ -76,7 +70,7 @@ angular.module('app.controllers', [])
         $scope.songs.push(song);
       });
 
-
+      $state.go('event.playlist');
 
       // fired when the youtube iframe api is ready
 
@@ -117,16 +111,16 @@ angular.module('app.controllers', [])
         }
 
 ])
-.controller('SearchController', ['$scope', '$location', 'socket', 'searchFactory', 'Event',
+.controller('SearchController', ['$scope', '$state', 'socket', 'searchFactory', 'Event',
     //******SearchController capitalized here, but not in original file. Check that it is consistently used in *****
     //HTML partial using this controller.
-    function ($scope, $location, socket, searchFactory, Event) {
+    function ($scope, $state, socket, searchFactory, Event) {
       //array of results we get back from the you tubes
       $scope.searchResults = [];
 
       //link back to event
       $scope.home = function () {
-        $location.path('/events/' + Event.event);
+        $state.go('event.playlist');
       };
 
       //function called when insider hits the add button

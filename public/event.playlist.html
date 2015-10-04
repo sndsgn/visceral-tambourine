@@ -1,0 +1,13 @@
+ <table class="center tc pbl ptl f2 darkest-blue w-100">
+    <tr class="bg-dark-blue white">
+      <th class="prs plm ptm pbm">Order</th>
+      <th class="prm pls ptm pbm">Cover</th>
+      <th class="prm plm ptm pbm">Title</th>
+
+    </tr>
+    <tr ng-repeat="song in songs track by $index">
+      <td class="prm plm">{{song.index}}</td>
+      <td class="prm plm"><img src="{{song.thumbnail}}" /></td>
+      <td class="prm plm">{{song.title}}</td>
+    </tr>
+  </table>

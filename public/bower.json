@@ -23,6 +23,7 @@
     "angular": "~1.4.7",
     "angular-route": "~1.4.7",
     "clipboard": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
     "jquery": "~2.1.4",
     "socket.io": "~1.3.7"
   }
