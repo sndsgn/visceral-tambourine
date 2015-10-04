@@ -86,8 +86,8 @@ module.exports = function(grunt) {
         shell: {
           prodServer: {
             command: [
-            'git add -f public/bower_components',
-            'git commit -m "force add bower libs"',
+//            'git add -f public/bower_components',
+//            'git commit -m "force add bower libs"',
             'git push heroku master',
             'heroku open'
             ].join('&&'),
