@@ -43,7 +43,11 @@ angular.module('app.controllers', [])
       $scope.search = function () {
         $state.go('event.search');
       };
-
+      var roomInvite = $location.absUrl();
+      $scope.roomInvite = roomInvite;
+      $scope.shareEvent = function() {
+        new Clipboard('.btn');
+      };
 
       //let the server know that insider has arrived in the room.
       socket.emit('joined');
