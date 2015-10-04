@@ -88,6 +88,7 @@ module.exports = function(grunt) {
             command: [
 //            'git add -f public/bower_components',
 //            'git commit -m "force add bower libs"',
+            'git commit -m "Updates file path",          
             'git push heroku master',
             'heroku open'
             ].join('&&'),
@@ -97,8 +98,24 @@ module.exports = function(grunt) {
               failOnError: true
             }
           }
-        }
+        },
 
+        "bower-install-simple": {
+          options: {
+            cwd: 'public/',
+            directory: 'public/bower_components'
+          },
+          "prod": {
+            options: {
+              production: true
+            }
+          }, 
+          "dev": {
+            options: {
+              production: false
+            }
+          }
+        }
       });
         
       grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -108,6 +125,7 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-contrib-cssmin');
       grunt.loadNpmTasks('grunt-mocha-test');
       grunt.loadNpmTasks('grunt-shell');
+      grunt.loadNpmTasks("grunt-bower-install-simple");
       grunt.loadNpmTasks('grunt-nodemon');   
 
       grunt.registerTask('server-dev', function () {
@@ -122,6 +140,8 @@ module.exports = function(grunt) {
 
        grunt.task.run(['watch']);
      });
+
+     grunt.registerTask("bower-install", [ "bower-install-simple" ]);
 
      grunt.registerTask('test', [
        'jshint',
@@ -141,6 +161,7 @@ module.exports = function(grunt) {
    grunt.registerTask('deploy', [
      'test',
      'build',
+     'bower-install',
      'upload'
    ]);
 
