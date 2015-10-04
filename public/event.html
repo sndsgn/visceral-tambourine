@@ -1,6 +1,13 @@
+
+
 <div class="pbl">
   <button ng-click="search()" class="add-button btn br3 pbm ptm prxl plxl bg-darkest-blue white f2 b--blue tracked">Add Songs</button>
 </div>
+
+    <input value="{{ roomInvite }}" id="share">
+    <button class="btn br3 pbm ptm pr-other pl-other bg-darkest-blue white f2 b--blue tracked" ng-click="shareEvent()" data-clipboard-target="#share">Share Event</button>
+  </div>
+
 
   <div id="player" class="center tc pbl ptm"></div>
   <table class="center tc pbl ptl f2 darkest-blue w-100">

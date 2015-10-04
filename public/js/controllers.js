@@ -43,7 +43,18 @@ angular.module('app.controllers', [])
       $scope.search = function () {
         $location.path('/events/' + Event.event + '/search');
       };
+      var roomInvite = $location.absUrl();
+      $scope.roomInvite = roomInvite;
+      $scope.shareEvent = function() {
+        new Clipboard('.btn');
 
+        console.log("I WANNA SHARE")
+        console.log('skrilla Loc', $location)
+        console.log('loc.absurl', $location.absUrl())
+
+      };
+
+      //$scope.currentEvent = roomInvite ;
       //let the server know that insider has arrived in the room.
       socket.emit('joined');
 
