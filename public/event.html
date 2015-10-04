@@ -2,7 +2,9 @@
   <button ng-click="search()" class="add-button btn br3 pbm ptm prxl plxl bg-darkest-blue white f2 b--blue tracked">Add Songs</button>
 </div>
 
-  <div id="player" class="center tc pbl ptm"></div>
+<div ng-show="songs.length > 0 && isCreator" class="player-container">
+    <div id="player" class="center tc pbl ptm"></div>
+  </div>  
   <table class="center tc pbl ptl f2 darkest-blue w-100">
     <tr class="bg-dark-blue white">
       <th class="prs plm ptm pbm">Order</th>
