@@ -1,0 +1,30 @@
+{
+  "name": "yodel",
+  "version": "0.0.0",
+  "authors": [
+    "Aaron Norby",
+    "Phong Pham",
+    "Robert Forloine",
+    "Alex Hutchison"
+  ],
+  "description": "Collaborative Music Playing",
+  "main": "app.js",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "clipboard": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "jquery": "~2.1.4",
+    "socket.io": "~1.3.7"
+  }
+}
