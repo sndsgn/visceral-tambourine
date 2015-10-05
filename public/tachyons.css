@@ -528,6 +528,10 @@ table {
   padding-left: 8px;
 }
 
+.plms {
+  padding-left: 12px;
+}
+
 .plm {
   padding-left: 16px;
 }
@@ -574,6 +578,10 @@ table {
 
 .prm {
   padding-right: 16px;
+}
+
+.prms {
+  padding-right: 10px;
 }
 
 .prl {
@@ -4862,6 +4870,10 @@ img {
   letter-spacing: -.05em;
 }
 
+.tracked-min {
+  letter-spacing: 0.05em;
+}
+
 .tracked-mega {
   letter-spacing: .3em;
 }
@@ -7957,6 +7969,10 @@ img {
 
 .pbs {
   padding-bottom: .5rem;
+}
+
+.pbms {
+  padding-bottom: .75rem;
 }
 
 .pbm {
