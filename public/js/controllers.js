@@ -1,22 +1,27 @@
 angular.module('app.controllers', [])
-.controller('LandingController', ['$scope', '$location', 'socket', 'Event',
+  .controller('LandingController', ['$scope', '$location', 'socket', 'Event',
     function ($scope, $location, socket, Event) {
       //function called when join button clicked
       $scope.join = function (event) {
         //send the event to the server
         socket.emit('join', event);
-        //set the name of the event. Used for routing purposes
-        Event.event = event;
-
-        //move the insider into the event
-        $location.path('/events/' + event);
       };
+      socket.on('success', function (success) {
+        if (success) {
+          Event.event = event;
+          //move the insider into the event
+          $location.path('/events/' + event);
+        } else {
+          $scope.error = true;
+        }
+      })
       //directs user to the create event page
       $scope.create = function () {
         $location.path('/create');
       };
-    }])
-.controller('CreateController', ['$scope', '$location', 'socket', 'Event',
+    }
+  ])
+  .controller('CreateController', ['$scope', '$location', 'socket', 'Event',
     function ($scope, $location, socket, Event) {
       //function called when the create button is pushed
       $scope.create = function (event) {
@@ -30,8 +35,9 @@ angular.module('app.controllers', [])
         //redirect  to the event
         $location.path('/events/' + event);
       };
-    }])
-.controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
+    }
+  ])
+  .controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
     function ($window, $scope, $state, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
@@ -48,8 +54,10 @@ angular.module('app.controllers', [])
         $state.go('event.search');
       };
 
-      $scope.roomInvite = $state.href($state.current.name, $state.params, {absolute: true});
-      $scope.shareEvent = function() {
+      $scope.roomInvite = $state.href($state.current.name, $state.params, {
+        absolute: true
+      });
+      $scope.shareEvent = function () {
         new Clipboard('.share');
       };
 
@@ -78,44 +86,44 @@ angular.module('app.controllers', [])
 
       // fired when the youtube iframe api is ready
 
-        $window.onPlayerReady = function onPlayerReady(event) {
-          console.log("ready");
-          if ($scope.songs[$scope.songIndex] && socket.id() === Event.creator) {
-            player.cueVideoById($scope.songs[$scope.songIndex].id);
-            $scope.songIndex++;
-            event.target.playVideo();
-          } else {
-            player.destroy();
-          }
-        };
-
-        // fired on any youtube state change, checks for a video ended event and
-        // plays next song if yes
-        $window.loadNext = function loadNext(event) {
-          if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED && socket.id() === Event.creator) {
-            console.log("loadNext");
-            player.loadVideoById($scope.songs[$scope.songIndex].id);
-            $scope.songIndex++;
-          }
-          console.log("loadnext");
-        };
-
-        // if the songs list used to be empty but now isn't, call the
-        // onYouTubeIframAPIReady function (for loading reasons, has to be called
-        // manually like this when you return from the search page)
-        $scope.$watch(function (scope) {
-            return scope.songs;
-          },
-          function (newVal, oldVal) {
-            if (oldVal.length === 0 && newVal.length > 0) {
-              $window.onYouTubeIframeAPIReady();
-            }
-          });
-
+      $window.onPlayerReady = function onPlayerReady(event) {
+        console.log("ready");
+        if ($scope.songs[$scope.songIndex] && socket.id() === Event.creator) {
+          player.cueVideoById($scope.songs[$scope.songIndex].id);
+          $scope.songIndex++;
+          event.target.playVideo();
+        } else {
+          player.destroy();
         }
+      };
 
-])
-.controller('SearchController', ['$scope', '$state', 'socket', 'searchFactory', 'Event',
+      // fired on any youtube state change, checks for a video ended event and
+      // plays next song if yes
+      $window.loadNext = function loadNext(event) {
+        if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED && socket.id() === Event.creator) {
+          console.log("loadNext");
+          player.loadVideoById($scope.songs[$scope.songIndex].id);
+          $scope.songIndex++;
+        }
+        console.log("loadnext");
+      };
+
+      // if the songs list used to be empty but now isn't, call the
+      // onYouTubeIframAPIReady function (for loading reasons, has to be called
+      // manually like this when you return from the search page)
+      $scope.$watch(function (scope) {
+          return scope.songs;
+        },
+        function (newVal, oldVal) {
+          if (oldVal.length === 0 && newVal.length > 0) {
+            $window.onYouTubeIframeAPIReady();
+          }
+        });
+
+    }
+
+  ])
+  .controller('SearchController', ['$scope', '$state', 'socket', 'searchFactory', 'Event',
     //******SearchController capitalized here, but not in original file. Check that it is consistently used in *****
     //HTML partial using this controller.
     function ($scope, $state, socket, searchFactory, Event) {
@@ -139,13 +147,13 @@ angular.module('app.controllers', [])
         $scope.searchResults = [];
 
         searchFactory.getSearchResults(searchTerm)
-          .then(function(result) {
+          .then(function (result) {
             result.items.forEach(function (song) {
               var songObj = {
                 id: song.id.videoId,
-              url: 'https://www.youtube.com/embed/' + song.id.videoId,
-              title: song.snippet.title,
-              thumbnail: song.snippet.thumbnails.medium.url
+                url: 'https://www.youtube.com/embed/' + song.id.videoId,
+                title: song.snippet.title,
+                thumbnail: song.snippet.thumbnails.medium.url
               };
               $scope.searchResults.push(songObj);
               $scope.searchTerm = '';
@@ -157,6 +165,4 @@ angular.module('app.controllers', [])
         console.log(song);
       });
     }
-]);
-
-
+  ]);

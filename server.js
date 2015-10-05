@@ -21,9 +21,15 @@ io.on('connection', function (socket) {
   //triggered when the join button on landing.html is clicked
   socket.on('join', function (event) {
     //server side socket will join the event passed in
-    socket.join(event);
-    //map the socket id to the event
-    insiderToEventMap[socket.id] = event;
+    eventList.forEach(function(item) {
+      if (item === event) {
+        socket.join(event);
+        insiderToEventMap[socket.id] = event;
+        socket.emit('success', true);
+        return;
+      }
+    });
+    socket.emit('success', false);
   });
 
   //triggered when someone enters the event
