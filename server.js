@@ -53,4 +53,7 @@ io.on('connection', function (socket) {
   });
 });
 
-server.listen(3030);
+var port = process.env.PORT || 3030;
+server.listen(port, function() {
+  console.log('Listening on ' + port);
+});

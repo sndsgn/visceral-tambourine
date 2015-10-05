@@ -1,7 +1,6 @@
 <div class="mw-18 center tc">
   <form ng-submit="getSearchResults(searchTerm)" class="w-i pts pbs">
-    <input type="text" name="searchTerm" ng-model="searchTerm" placeholder="Song / Artist" class="darkest-blue tracked ptm pbm f2 tc br3 bal w-100"></input>
-
+    <input type="text" name="searchTerm" ng-model="searchTerm" placeholder="Song / Artist" class="darkest-blue tracked ptm pbm f2 tc br3 bal w-100" autofocus="autofocus"></input>
 
     <div class="pts pbl w-100">
       <button type="submit" class="search-button btn br3 pbm ptm  w-100 bg-darkest-blue white f2 b--blue tracked">Search</button>
@@ -14,8 +13,8 @@
   <div class="pbm center tc">
     <div class="ptm pbm" ng-repeat="song in searchResults">
       <div class="f3 bal b--darkest-blue btrr3 btlr3 ptm pbm w-i darkest-blue prs pls">{{song.title}}</div>
-      <div><img class="h5 v-mid" ng-src="{{song.thumbnail}}" /></div>
-      <div><button class="add-song ptm pbm mrn w-i f3 mrn bg-dark-blue white bblr3 bbrr3 bg-darest-blues white w-100 b--blue btn" ng-click="addSong(song)">Add song to playlist</button></div>
+      <div><img class="h4a v-mid" ng-src="{{song.thumbnail}}" /></div>
+      <div><button class="add-song ptm pbm mrn w-i f3 mrn bg-dark-blue white bblr3 bbrr3 w-100 b--blue btn" ng-click="addSong(song)">Add song to playlist</button></div>
     </div>
   </div>
 </div>

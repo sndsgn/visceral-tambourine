@@ -43,10 +43,10 @@ angular.module('app.controllers', [])
       $scope.search = function () {
         $state.go('event.search');
       };
-      var roomInvite = $location.absUrl();
-      $scope.roomInvite = roomInvite;
+
+      $scope.roomInvite = $state.href($state.current.name, $state.params, {absolute: true});
       $scope.shareEvent = function() {
-        new Clipboard('.btn');
+        new Clipboard('.share');
       };
 
       //let the server know that insider has arrived in the room.
@@ -134,11 +134,7 @@ angular.module('app.controllers', [])
       $scope.getSearchResults = function (searchTerm) {
         $scope.searchResults = [];
 
-        //********Original function name $scope.search. Make sure used consistently in partials and js files.*********
         searchFactory.getSearchResults(searchTerm)
-          //******Originally $scope.searchTerm was passed as an argument to the factory method******
-          //and there was nothing passed to the parent function. Make sure this is used consistently
-          //and is not causing bugs.
           .then(function(result) {
             result.items.forEach(function (song) {
               var songObj = {
