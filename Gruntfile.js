@@ -99,24 +99,24 @@ module.exports = function(grunt) {
           }
         },
 
-        "bower-install-simple": {
-          options: {
-            cwd: 'public/',
-            directory: 'public/bower_components'
-          },
-          "prod": {
-            options: {
-              production: true
-            }
-          }, 
-          "dev": {
-            options: {
-              production: false
-            }
-          }
-        }
-      });
-        
+//        "bower-install-simple": {
+//          options: {
+//            cwd: 'public/',
+//            directory: './bower_components'
+//          },
+//          "prod": {
+//            options: {
+//              production: true
+//            }
+//          }, 
+//          "dev": {
+//            options: {
+//              production: false
+//            }
+//          }
+//        }
+//      });
+//        
       grunt.loadNpmTasks('grunt-contrib-uglify');
       grunt.loadNpmTasks('grunt-contrib-jshint');
       grunt.loadNpmTasks('grunt-contrib-watch');
@@ -124,7 +124,7 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-contrib-cssmin');
       grunt.loadNpmTasks('grunt-mocha-test');
       grunt.loadNpmTasks('grunt-shell');
-      grunt.loadNpmTasks("grunt-bower-install-simple");
+//      grunt.loadNpmTasks("grunt-bower-install-simple");
       grunt.loadNpmTasks('grunt-nodemon');   
 
       grunt.registerTask('server-dev', function () {
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
        grunt.task.run(['watch']);
      });
 
-     grunt.registerTask("bower-install", [ "bower-install-simple" ]);
+//     grunt.registerTask("bower-install", [ "bower-install-simple" ]);
 
      grunt.registerTask('test', [
        'jshint',
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
      grunt.registerTask('build', [
 //       'concat',
 //       'uglify',
-       'cssmin',
+//       'cssmin',
        'bower-install'
      ]);
 
