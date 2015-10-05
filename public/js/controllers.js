@@ -25,15 +25,19 @@ angular.module('app.controllers', [])
     function ($scope, $location, socket, Event) {
       //function called when the create button is pushed
       $scope.create = function (event) {
-        //set the name of the event.
-        Event.event = event;
-        console.log(socket.id());
-        Event.creator = socket.id();
-        console.log(Event.creator);
         //send the event to the server so it can do creation things
         socket.emit('create', event);
-        //redirect  to the event
-        $location.path('/events/' + event);
+        socket.on('createable', function (createable) {
+          if (createable) {
+          //set the name of the event.
+            Event.event = event;
+            Event.creator = socket.id();
+            //redirect  to the event
+            $location.path('/events/' + event);
+          } else {
+            $scope.error = true;
+          }
+        });
       };
     }
   ])

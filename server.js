@@ -41,13 +41,19 @@ io.on('connection', function (socket) {
   //triggered when the create button is clicked on create.html
   socket.on('create', function (event) {
     //server side socket joins the event that is passed in
-    socket.join(event);
-    //push the event to the events list
-    eventList.push(event);
-    //create a prop on eventState object with name of the event. Init w/ empty array
-    eventState[event] = [];
-    //map socket id to event
-    insiderToEventMap[socket.id] = event;
+    if (eventList.indexOf(event) === -1) {
+      socket.join(event);
+      //push the event to the events list
+      eventList.push(event);
+      //create a prop on eventState object with name of the event. Init w/ empty array
+      eventState[event] = [];
+      //map socket id to event
+      insiderToEventMap[socket.id] = event;
+      socket.emit('createable', true);
+      return;
+    }
+
+    socket.emit('createable', false);
   });
   //triggered when someone clicks add in search.html
   socket.on('addSong', function (song) {
