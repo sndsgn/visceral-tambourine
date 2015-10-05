@@ -1,49 +1,43 @@
-<div class="pbl">
+<div class="pbm">
   <button ng-click="search()" class="add-button btn br3 pbm ptm prxl plxl bg-darkest-blue white f2 b--blue tracked">Add Songs</button>
 </div>
+<div class="pbl">
+  <button class="btn br3 pbm ptm prl pll bg-blue white f3 b--blue tracked share" ng-click="shareEvent()" data-clipboard-text="{{roomInvite}}">&nbsp;Copy Event URL&nbsp;</button>
+</div>
 
-  <div id="player" class="center tc pbl ptm mw6"></div>
-  <table class="center tc pbl ptl f2-l f2-m darkest-blue w-100">
-    <tr class="bg-dark-blue white pbm">
-      <th class="plm prm ptm pbm">Order</th>
-      <th class="plm prm ptm pbm">Title</th>
-      <th class="plm prm ptm pbm">Cover</th>
-    </tr>
-    <tr ng-repeat="song in songs track by $index">
-      <td class="plm prm ptm pbm ba b--light-gray">{{$index}}</td>
-      <td class="prm plm ptm pbm ba b--light-gray">{{song.title}}</td>
-      <td class="prm plm ba b--light-gray pts"><img src="{{song.thumbnail}}" /></td>
-    </tr>
-  </table>
+<div ng-show="songs.length > 0 && isCreator" class="player-container">
+  <div id="player" class="center tc pbl ptm"></div>
+</div>  
+<div ui-view></div>
 
-  <script>
+<script>
   if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig'])
-  {var YTConfig = {'host': 'http://www.youtube.com'};}if (!YT.loading     )
-  {YT.loading = 1;(function(){var l = [];YT.ready = function(f) {if (YT.loaded)
+{var YTConfig = {'host': 'http://www.youtube.com'};}if (!YT.loading     )
+{YT.loading = 1;(function(){var l = [];YT.ready = function(f) {if (YT.loaded)
   {f();} else {l.push(f);}};window.onYTReady = function() {YT.loaded = 1;for (var i
-  = 0; i < l.length; i++) {try {l[i]();} catch (e) {}}};YT.setConfig =
-     function(c) {for (var k in c) {if (c.hasOwnProperty(k)) {YTConfig[k] =
-     c[k];}}};var a = document.createElement('script');a.type =
-     'text/javascript';a.id = 'www-widgetapi-script';a.src = 'https:' +
-     '//s.ytimg.com/yts/jsbin/www-widgetapi-vflqb8CPD/www-widgetapi.js';a.async
-     = true;var b =
-     document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a,
+    = 0; i < l.length; i++) {try {l[i]();} catch (e) {}}};YT.setConfig =
+    function(c) {for (var k in c) {if (c.hasOwnProperty(k)) {YTConfig[k] =
+      c[k];}}};var a = document.createElement('script');a.type =
+  'text/javascript';a.id = 'www-widgetapi-script';a.src = 'https:' +
+  '//s.ytimg.com/yts/jsbin/www-widgetapi-vflqb8CPD/www-widgetapi.js';a.async
+  = true;var b =
+  document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a,
     b);})();}
-  </script>
+</script>
 
-  <script>
-    console.log("start player");
-    var player;
-    function onYouTubeIframeAPIReady() {
-      console.log("api ready");
-      player = new YT.Player('player', {
-        height: '275',
-        width: '275',
-        //videoId: 'CpmDAu_47OE',
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': loadNext
-        }
-      });
-    }
-  </script>
+<script>
+  console.log("start player");
+  var player;
+  function onYouTubeIframeAPIReady() {
+    console.log("api ready");
+    player = new YT.Player('player', {
+      height: '275',
+           width: '275',
+           //videoId: 'CpmDAu_47OE',
+           events: {
+             'onReady': onPlayerReady,
+           'onStateChange': loadNext
+           }
+    });
+  }
+</script>

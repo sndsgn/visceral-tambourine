@@ -1,22 +1,35 @@
-angular.module('app', ['app.controllers', 'app.services','ngRoute'])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+angular.module('app', ['app.controllers', 'app.services','ui.router'])
+  .config(function ($stateProvider, $locationProvider) {
+    $stateProvider
+      .state('landing', {
         templateUrl: 'landing.html',
+        url: '/',
         controller: 'LandingController'
       })
-      .when('/create', {
+      .state('create', {
+        url: '/create',
         templateUrl: 'create.html',
         controller: 'CreateController'
       })
-      .when('/events/:event', {
+      .state('event', {
+        url: '/events/:event',
         templateUrl: 'event.html',
         controller: 'EventController'
       })
-      .when('/events/:event/search', {
-        templateUrl: 'search.html',
+      .state('event.playlist', {
+        templateUrl: 'event.playlist.html',
+        controller: 'EventController'
+      })
+      .state('event.search', {
+        url: '/search',
+        templateUrl: 'event.search.html',
         controller: 'SearchController'
       });
+
+      $locationProvider.html5Mode({
+        enabled: true
+      });
   });
+
 
 
