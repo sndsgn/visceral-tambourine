@@ -1,5 +1,5 @@
 angular.module('app', ['app.controllers', 'app.services','ui.router'])
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider, $locationProvider) {
     $stateProvider
       .state('landing', {
         templateUrl: 'landing.html',
@@ -24,6 +24,10 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
         url: '/search',
         templateUrl: 'event.search.html',
         controller: 'SearchController'
+      });
+
+      $locationProvider.html5Mode({
+        enabled: true
       });
   });
 
