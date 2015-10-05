@@ -31,8 +31,8 @@ angular.module('app.controllers', [])
         $location.path('/events/' + event);
       };
     }])
-.controller('EventController', ['$window', '$scope', '$location', 'socket', 'Event',
-    function ($window, $scope, $location, socket, Event) {
+.controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
+    function ($window, $scope, $state, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
 
@@ -41,7 +41,12 @@ angular.module('app.controllers', [])
 
       //link to the search view
       $scope.search = function () {
-        $location.path('/events/' + Event.event + '/search');
+        $state.go('event.search');
+      };
+
+      $scope.roomInvite = $state.href($state.current.name, $state.params, {absolute: true});
+      $scope.shareEvent = function() {
+        new Clipboard('.share');
       };
 
       //let the server know that insider has arrived in the room.
@@ -65,7 +70,7 @@ angular.module('app.controllers', [])
         $scope.songs.push(song);
       });
 
-
+      $state.go('event.playlist');
 
       // fired when the youtube iframe api is ready
 
@@ -106,16 +111,16 @@ angular.module('app.controllers', [])
         }
 
 ])
-.controller('SearchController', ['$scope', '$location', 'socket', 'searchFactory', 'Event',
+.controller('SearchController', ['$scope', '$state', 'socket', 'searchFactory', 'Event',
     //******SearchController capitalized here, but not in original file. Check that it is consistently used in *****
     //HTML partial using this controller.
-    function ($scope, $location, socket, searchFactory, Event) {
+    function ($scope, $state, socket, searchFactory, Event) {
       //array of results we get back from the you tubes
       $scope.searchResults = [];
 
       //link back to event
       $scope.home = function () {
-        $location.path('/events/' + Event.event);
+        $state.go('event.playlist');
       };
 
       //function called when insider hits the add button
@@ -129,11 +134,7 @@ angular.module('app.controllers', [])
       $scope.getSearchResults = function (searchTerm) {
         $scope.searchResults = [];
 
-        //********Original function name $scope.search. Make sure used consistently in partials and js files.*********
         searchFactory.getSearchResults(searchTerm)
-          //******Originally $scope.searchTerm was passed as an argument to the factory method******
-          //and there was nothing passed to the parent function. Make sure this is used consistently
-          //and is not causing bugs.
           .then(function(result) {
             result.items.forEach(function (song) {
               var songObj = {
