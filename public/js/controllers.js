@@ -36,6 +36,10 @@ angular.module('app.controllers', [])
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
 
+      // this variable will let us hide the player from event insiders other than
+      // the creator
+      $scope.isCreator = socket.id() === Event.creator;
+
       // to keep track of which song is up
       $scope.songIndex = 0;
 
@@ -58,7 +62,7 @@ angular.module('app.controllers', [])
         //making sure thats its empty before doing so
         if ($scope.songs.length === 0) {
 
-          $scope.songs = songs;
+          $scope.songs = songs || [];
         }
 
       });
