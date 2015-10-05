@@ -5,16 +5,17 @@ angular.module('app.controllers', [])
       $scope.join = function (event) {
         //send the event to the server
         socket.emit('join', event);
+      
+        socket.on('success', function (success) {
+          if (success) {
+            Event.event = event;
+            //move the insider into the event
+            $location.path('/events/' + event);
+          } else {
+            $scope.error = true;
+          }
+        })
       };
-      socket.on('success', function (success) {
-        if (success) {
-          Event.event = event;
-          //move the insider into the event
-          $location.path('/events/' + event);
-        } else {
-          $scope.error = true;
-        }
-      })
       //directs user to the create event page
       $scope.create = function () {
         $location.path('/create');
