@@ -102,7 +102,7 @@ module.exports = function(grunt) {
         "bower-install-simple": {
           options: {
             cwd: 'public/',
-            directory: 'public/bower_components'
+            directory: './bower_components'
           },
           "prod": {
             options: {
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
      grunt.registerTask('build', [
 //       'concat',
 //       'uglify',
-       'cssmin',
+//       'cssmin',
        'bower-install'
      ]);
 
