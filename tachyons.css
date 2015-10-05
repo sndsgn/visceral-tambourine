@@ -4419,6 +4419,10 @@ code,
   height: 16rem;
 }
 
+.h8 {
+  height: 24rem;
+}
+
 .h10 {
   height: 32rem;
 }
@@ -4643,6 +4647,14 @@ code,
     height: 16rem;
   }
 
+  .h8-m {
+    height: 24rem;
+  }
+
+  .h10-m {
+    height: 32rem;
+  }
+
   .h-10-m {
     height: 10%;
   }
@@ -4749,6 +4761,14 @@ code,
 
   .h5-l {
     height: 16rem;
+  }
+
+  .h8-l {
+    height: 24rem;
+  }
+
+  .h10-l {
+    height: 32rem;
   }
 
   .h-10-l {
@@ -5458,6 +5478,9 @@ img {
   width: 16rem;
 }
 
+.w8 {
+  width: 20rem;
+}
 .w-10 {
   width: 10%;
 }
@@ -10055,6 +10078,10 @@ img {
     font-size: 4rem;
   }
 
+.f0-ns {
+  font-size: 3rem;
+}
+
   .f1-ns {
     font-size: 2rem;
   }
@@ -10106,6 +10133,10 @@ img {
   .mega-l {
     font-size: 4rem;
   }
+
+.f0-l {
+  font-size: 3rem;
+}
 
   .f1-l {
     font-size: 2rem;
