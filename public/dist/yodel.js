@@ -134,7 +134,9 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
       //boadcasts it to everyone in the event. Here we get the song and
       //add it to our local array
       socket.on('songAdded', function (song) {
-        $scope.songs.push(song);
+       if($scope.songs.indexOf(song) === -1) {
+          $scope.songs.push(song);
+        } 
       });
 
       $state.go('event.playlist');
@@ -155,12 +157,13 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
       // fired on any youtube state change, checks for a video ended event and
       // plays next song if yes
       $window.loadNext = function loadNext(event) {
+          console.log('$scope.songs 001', $scope.songs);
         if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED && socket.id() === Event.creator) {
           console.log("loadNext");
           player.loadVideoById($scope.songs[$scope.songIndex].id);
+//          $scope.songs.shift();
           $scope.songIndex++;
         }
-        console.log("loadnext");
       };
 
       // if the songs list used to be empty but now isn't, call the

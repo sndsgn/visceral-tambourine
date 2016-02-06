@@ -62,7 +62,7 @@ io.on('connection', function (socket) {
   });
   //triggered when someone clicks add in search.html
   socket.on('addSong', function (song) {
-    console.log(song);
+    console.log('Server on("addSong"', song);
     //add the song to the event state for the event of the socket
     eventState[insiderToEventMap[socket.id]].push(song);
     //broadcast to all insiders the added song
