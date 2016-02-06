@@ -31,7 +31,13 @@ angular.module('app.services', [])
   })
   .factory('searchFactory', ['$http', '$window', 'socket',
     function ($http, $window, socket) {
-      var key = 'AIzaSyC_7kwz1nFe3CW8DxIcA9j8dI1oOQjOzFM';
+      var key = '';
+      $http.get('/config')
+        .then(function(res) {
+          key = res.data;
+        }, function(res) {
+          console.error();
+        });
 
       return {
         //The searchFactory getSearch results method handles the get request using the searchTerms provided

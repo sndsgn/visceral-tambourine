@@ -24,6 +24,7 @@
     "grunt-mocha-test": "0.12.7",
     "grunt-nodemon": "0.4.0",
     "grunt-shell": "1.1.2",
+    "html": "0.0.10",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "nodemon": "^1.7.1",

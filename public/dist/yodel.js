@@ -77,8 +77,8 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
       };
     }
   ])
-  .controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
-    function ($window, $scope, $state, socket, Event) {
+  .controller('EventController', ['$window', '$scope', '$state', '$location', 'socket', 'Event',
+    function ($window, $scope, $state, $location, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
 
@@ -100,6 +100,21 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
       $scope.shareEvent = function () {
         new Clipboard('.share');
       };
+
+      if(!socket.id()) {
+        var event = $location.url().slice(8);
+        socket.emit('join', event);
+      
+        socket.on('success', function (success) {
+          if (success) {
+            Event.event = event;
+            //move the insider into the event
+            $location.path('/events/' + event);
+          } else {
+            $scope.error = true;
+          }
+        })
+      }
 
       //let the server know that insider has arrived in the room.
       socket.emit('joined');
@@ -239,7 +254,13 @@ angular.module('app', ['app.controllers', 'app.services','ui.router'])
   })
   .factory('searchFactory', ['$http', '$window', 'socket',
     function ($http, $window, socket) {
-      var key = 'AIzaSyC_7kwz1nFe3CW8DxIcA9j8dI1oOQjOzFM';
+      var key = '';
+      $http.get('/config')
+        .then(function(res) {
+          key = res.data;
+        }, function(res) {
+          console.error();
+        });
 
       return {
         //The searchFactory getSearch results method handles the get request using the searchTerms provided

@@ -42,8 +42,8 @@ angular.module('app.controllers', [])
       };
     }
   ])
-  .controller('EventController', ['$window', '$scope', '$state', 'socket', 'Event',
-    function ($window, $scope, $state, socket, Event) {
+  .controller('EventController', ['$window', '$scope', '$state', '$location', 'socket', 'Event',
+    function ($window, $scope, $state, $location, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
 
@@ -65,6 +65,21 @@ angular.module('app.controllers', [])
       $scope.shareEvent = function () {
         new Clipboard('.share');
       };
+
+      if(!socket.id()) {
+        var event = $location.url().slice(8);
+        socket.emit('join', event);
+      
+        socket.on('success', function (success) {
+          if (success) {
+            Event.event = event;
+            //move the insider into the event
+            $location.path('/events/' + event);
+          } else {
+            $scope.error = true;
+          }
+        })
+      }
 
       //let the server know that insider has arrived in the room.
       socket.emit('joined');
