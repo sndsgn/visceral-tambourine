@@ -33,6 +33,7 @@ angular.module('app.controllers', [])
           //set the name of the event.
             Event.event = event;
             Event.creator = socket.id();
+            window.sessionStorage.setItem('Event.creator', Event.creator);
             //redirect  to the event
             $location.path('/events/' + event);
           } else {
@@ -46,10 +47,16 @@ angular.module('app.controllers', [])
     function ($window, $scope, $state, $location, socket, Event) {
       //this is the array that gets ng-repeated in the view
       $scope.songs = [];
+      socket.on('disconnect', function(user) {
+        console.log('FROM CONTROLLER', user, 'socket', socket.conn.id);
+//        socket.broadcast.to(roomname).emit('Demz gone! from controller', {user_name: 'controller'});
+      });
+
 
       // this variable will let us hide the player from event insiders other than
       // the creator
-      $scope.isCreator = socket.id() === Event.creator;
+      //$scope.isCreator = socket.id() === Event.creator;
+      $scope.isCreator = window.sessionStorage.getItem('Event.creator') === Event.creator;
 
       // to keep track of which song is up
       $scope.songIndex = 0;
@@ -71,6 +78,7 @@ angular.module('app.controllers', [])
         socket.emit('join', event);
       
         socket.on('success', function (success) {
+         
           if (success) {
             Event.event = event;
             //move the insider into the event
@@ -109,8 +117,7 @@ angular.module('app.controllers', [])
       // fired when the youtube iframe api is ready
 
       $window.onPlayerReady = function onPlayerReady(event) {
-        console.log("ready");
-        if ($scope.songs[$scope.songIndex] && socket.id() === Event.creator) {
+        if ($scope.songs[$scope.songIndex] && socket.id() === window.sessionStorage.getItem('Event.creator')) {
           player.cueVideoById($scope.songs[$scope.songIndex].id);
           $scope.songIndex++;
           event.target.playVideo();
@@ -122,9 +129,7 @@ angular.module('app.controllers', [])
       // fired on any youtube state change, checks for a video ended event and
       // plays next song if yes
       $window.loadNext = function loadNext(event) {
-          console.log('$scope.songs 001', $scope.songs);
         if ($scope.songs[$scope.songIndex] && event.data === YT.PlayerState.ENDED && socket.id() === Event.creator) {
-          console.log("loadNext");
           player.loadVideoById($scope.songs[$scope.songIndex].id);
 //          $scope.songs.shift();
           $scope.songIndex++;
@@ -183,9 +188,5 @@ angular.module('app.controllers', [])
             });
           });
       };
-
-      socket.on('songAdded', function (song) {
-        console.log(song);
-      });
     }
   ]);
