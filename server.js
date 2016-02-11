@@ -14,6 +14,10 @@ app.get('/config', function (req, res) {
   res.send(config.key);
 });
 
+//eventList { start: 
+//     { socketId: {},
+//            uSsdY5kotd89cH7cAAAD: { socketId: 'creator', songs: [], insiderCount: 1 } } }
+
 
 //var eventState = {};
 //var eventList = [];
@@ -28,19 +32,19 @@ io.on('connection', function (socket) {
   socket.on('join', function (event) {
     //server side socket will join the event passed in
 //    eventList.forEach(function(item) { 
-      if(eventList[event]) {
-        socket.join(event);
-        if(!eventList[event].creator) {
-          eventList[event][socket.id] = 'creator';
-          eventList[event].insidersCount = 1;
-        } else {
-          var socketId = socket.id;
-          eventList[event] = {};
-          eventList[event][socket.id] = 'insider-' + eventlist[event].insidersCount;
-//        insiderToEventMap[socket.id] = event;
-        }
-        socket.emit('success', true);
-        return;
+    if(eventList[event]) {
+      socket.join(event);
+      eventList[event][socket.id] = 'insider-' + eventlist[event];
+      eventlist[event].insidersCount++;
+      socket.emit('success', true);
+      return;
+    } else if(!eventList[event]) {
+      eventList[event] = {};
+      eventList[event][socket.id] = 'creator';
+      eventList[event].insidersCount = 1;
+      socket.emit('success', true);
+      return;
+        //        insiderToEventMap[socket.id] = event;
     } else {
       socket.emit('success', false);
     }
@@ -57,8 +61,8 @@ io.on('connection', function (socket) {
     //send the state of the event to the client
 //    socket.emit('joined', eventState[insiderToEventMap[socket.id]]);
     for(var prop in eventList) {
-      if(prop[socket.id]) {
-        socket.emit('joined', prop[socket.id].songs);
+      if(eventList[prop][socket.id]) {
+        socket.emit('joined', eventList[prop].songs);
       }
     }
 
@@ -70,15 +74,18 @@ io.on('connection', function (socket) {
     if (!eventList[event]) {
       socket.join(event);
       //push the event to the events list
-      var socketId = socket.id;
-      eventList[event] = {socketId : {}};
-      eventList[event][socketId] = {socketId : 'creator'};
-      eventList[event][socket.id].songs = [];
+      eventList[event] = {};
+//      eventList[event][socketId] = 'creator';
       //create a prop on eventState object with name of the event. Init w/ empty array
     // eventState[event] = [];
+      
+      eventList[event].songs = [];
       //map socket id to event
     //  insiderToEventMap[socket.id] = event;
-      eventList[event][socket.id].insiderCount = 1;
+      if(eventList[event][socket.id] !== 'creator') {
+        eventList[event][socket.id] = 'creator';
+        eventList[event].insiderCount = 1;
+      }
       socket.emit('createable', true);
       return;
     }
@@ -90,8 +97,11 @@ io.on('connection', function (socket) {
     //add the song to the event state for the event of the socket
   //  eventState[insiderToEventMap[socket.id]].push(song);
      for(var prop in eventList) {
-       if(prop[socket.id]) {
-         prop[socket.id].songs.push(song);
+       console.log('prop', prop, 'eventList', eventList, 'socket.id', socket.id);
+       if(eventList[prop][socket.id]) {
+         eventList[prop].songs.push(song);
+         console.log('prop[socket.id]', prop[socket.id]);
+         console.log('eventList', eventList);
        }
      }
 
